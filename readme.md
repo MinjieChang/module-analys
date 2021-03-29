@@ -1,8 +1,8 @@
-# 模块化分析
+# import、export，require、exports模块化分析
 
 ## 前言
 
-在看 `babel-plugin-import`的时候，发现在其代码中经过编译后的代码是这样的形式：
+在使用`antd`组件的过程中，发现在其库中经过编译后的代码是这样的形式：
 
 ```js
 var _button = _interopRequireDefault(require("antd/lib/button"));
@@ -22,11 +22,11 @@ babel可以看成是 `javascript`语法的编译器，用来将 `es6`的语法�
 
 在看之前，这里先抛出几个问题帮助我们思考babel做的工作
 
-1. [babel将es6的导入导出语法转换成了什么？](#q1)
-2. [es6的导入导出有多种写法，bable是如何处理这些不同的情况的？](#q2)
-3. [为什么使用require的方式导入一些文件需要加上 `default`, 而有的导入就不需要呢？](#q3)
+1. **babel将es6的导入导出语法转换成了什么？**
+2. **es6的导入导出有多种写法，bable是如何处理这些不同的情况的？**
+3. **为什么使用require的方式导入一些文件需要加上 `default`, 而有的导入就不需要呢？**
 
-这里通过起一个小项目来解析这些问题。项目地址可以在[这里]()查看
+这里通过起一个小项目来解析这些问题。项目地址可以在[这里](https://github.com/MinjieChang/module)查看
 
 首先起一个项目并安装babel编译环境：
 
@@ -180,7 +180,7 @@ console.log(_a.a, _a.b, _a.c);
 
 由于 `require`加载的是整个 `exports`对象，babel没有做特殊的转换，只需要获取对应的属性即可
 
-以上三种导入方式基本上涵盖了es6的常用导入方式，这也基本上回答了上面提出的[问题2](q2)。
+以上三种导入方式基本上涵盖了es6的常用导入方式，这也基本上回答了上面提出的[问题2](#babel-模块实现)。
 
 ### require 导入
 
@@ -243,7 +243,7 @@ var a = require('./a.js' )
 ```
 所以在babel6中就去掉了这个hack方法，所以在使用require导入es6的默认输出的时候需要加上default属性。如果你觉得加上比较麻烦，可以引入 **babel-plugin-add-module-exports** 这个插件即可。
 
-这也就回答了上面提到的<a href="q3">问题3</a>
+这也就回答了上面提到的[问题3](#babel-模块实现)
 
 以上是对babel模块化解析的部分，相信看到这里的你应该对es6和commonjs的模块混用的原理有了一定的认识了。
 
@@ -674,5 +674,5 @@ webpack 提供了两个属性，`output.libraryTarget`和`output.library`
 
 refer:
 
-[babel 使用文档](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/user-handbook.md)
+[babel 使用文档](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/user-handbook.md)<br/>
 [「前端」import、require、export、module.exports 混合详解](https://github.com/ShowJoy-com/showjoy-blog/issues/39)
