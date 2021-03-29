@@ -247,6 +247,7 @@ var a = require('./a.js' )
 
 以上是对babel模块化解析的部分，相信看到这里的你应该对es6和commonjs的模块混用的原理有了一定的认识了。
 
+这部分的代码可在[这里查看](https://github.com/MinjieChang/module/tree/master/babel-module)
 ## webpack 模块化的原理
 
 webpack在进行打包的过程中对于模块化的解析也是实现了自己的一套方式。这里以webpack3为例，首先安装webpack并添加配置文件如下：
@@ -372,8 +373,7 @@ var __WEBPACK_IMPORTED_MODULE_0__a_js__ = __webpack_require__(1);
 
 可以发现，整个自执行函数是个 `__webpack_require__` 递归执行的过程，**通过不断的向下传递 `__webpack_require__`方法，达到不断的向上传递 `__webpack_exports__`结果的目的**，每一次向下传递 `__webpack_require__`方式，都会创建一个新的 `module`对象，而 `__webpack_exports__`也正是对 `module.exports`对象的引用，这也表明了 `__webpack_require__` 导入的结果和commonjs的实现方式是类似的，都是导入的一个对象。
 
-<!-- todo -->
-这部分的代码可在[这里查看]()
+这部分的代码可在[这里查看](https://github.com/MinjieChang/module/tree/master/webpack-module)
 
 ## webpack 和 babel 模块化的配合
 
@@ -442,8 +442,7 @@ module.exports = {
 ```
 可以发现，在函数中引入了babel的辅助方法 `_interopRequireDefault`，**可知在webpack打包前babel已经对模块化做了编译了**，并且函数的参数也是使用了 `exports` 替代了 `__webpack_exports__`，这可能是是babel处理的结果，也可能是webpack处理的结果，这么做的目的都是为了兼容babel对模块化处理的方式。
 
-<!-- todo -->
-这部分的代码可在[这里查看]()
+这部分的代码可在[这里查看](https://github.com/MinjieChang/module/tree/master/webpack-babel-module)
 
 ## 模块依赖优化
 
