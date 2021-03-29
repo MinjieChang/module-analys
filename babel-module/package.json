@@ -1,0 +1,19 @@
+{
+  "name": "babel6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build_import": "babel index.js -o compiledIndex.js",
+    "build_export": "babel a.js -o compiledA.js",
+    "build_as": "babel index2.js -o compiledIndex2.js",
+    "build_partial": "babel index3.js -o compiledIndex3.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
